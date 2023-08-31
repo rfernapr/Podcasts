@@ -1,11 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { Header } from "./components/Header/Header"
-import { Home } from "./pages/Home/Home"
-import { EpisodeDetail } from "./pages/EpisodeDetail/EpisodeDetail"
 import { QueryClient, QueryClientProvider } from "react-query"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.scss"
-import { PodcastDetail } from "./pages/PodcastDetail/PodcastDetail"
+import { Header } from "./infrastructure/components/Header/Header"
+import { EpisodeDetail } from "./infrastructure/components/EpisodeDetail/EpisodeDetail"
+import { Home } from "./infrastructure/components/Home/Home"
+import { PodcastDetail } from "./infrastructure/components/PodcastDetail/PodcastDetail"
 
 function App() {
 

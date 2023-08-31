@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
-import PodcastsService from "../../services/PodcastsService";
 import { PodcastCard } from "../../components/PodcastCard/PodcastCard";
 import "./Home.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { IPodcastEntry } from "../../services/ServiceModels";
+import { IPodcastEntry } from "../../../domain/models/PodcastEntry";
+import { podcastService } from "../../../domain/services/PodcastsService";
 
 export const Home = (): JSX.Element => {
 
@@ -20,12 +20,7 @@ export const Home = (): JSX.Element => {
     }
 
     const { isLoading, error, data } = useQuery('podcasts', () => {
-        return PodcastsService
-            .getInstance()
-            .getPodcasts()
-            .then(response => {
-                return response.feed.entry;
-            });
+        return podcastService.getPodcasts()
     }, {
         select: response => filterResults(response, search)
     })

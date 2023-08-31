@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import PodcastsService from "../../services/PodcastsService";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
-import { IEpisodeEntry } from "../../services/ServiceModels";
 import { PodcastDetailCard } from "../../components/PodcastDetailCard/PodcastDetailCard";
+import { IEpisodeEntry } from "../../../domain/models/EpisodeEntry";
+import { podcastService } from "../../../domain/services/PodcastsService";
 
 export const EpisodeDetail = (): JSX.Element => {
 
@@ -13,14 +13,12 @@ export const EpisodeDetail = (): JSX.Element => {
     const [podcast, setPodcast] = useState<IEpisodeEntry>();
 
     const { isLoading, error, data } = useQuery(`podcast-${podcastId}`, () => {
-        return PodcastsService
-            .getInstance()
-            .getPodcastDetail(podcastId ?? "");
+        return podcastService.getPodcastDetail(podcastId ?? "");
     })
 
     useEffect(() => {
-        setEpisode(data?.results.find(res => res.wrapperType === "podcastEpisode" && res.trackId === Number(episodeId)));
-        setPodcast(data?.results.find(res => res.wrapperType === "track"));
+        setEpisode(data?.find(res => res.wrapperType === "podcastEpisode" && res.trackId === Number(episodeId)));
+        setPodcast(data?.find(res => res.wrapperType === "track"));
     }, [data, episodeId]);
 
     return (
