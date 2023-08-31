@@ -1,5 +1,5 @@
 export interface IPodcastDetailCardProps {
-    className: string;
+    className?: string;
     podcastArtworkUrl: string;
     podcastName: string;
     podcastArtist: string;

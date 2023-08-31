@@ -2,7 +2,7 @@ import { IPodcastDetailResponse, IPodcastListResponse } from "./ServiceModels";
 
 export default class PodcastsService {
     
-    private apiHost = import.meta.env.VITE_API_HOST;
+    private apiHost = "https://itunes.apple.com";
 
     private static _instance: PodcastsService;
 
