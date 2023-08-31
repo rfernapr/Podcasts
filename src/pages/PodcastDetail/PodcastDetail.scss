@@ -1,0 +1,19 @@
+.podcast-detail-container {
+
+    aside {
+        height: 100%;
+        font-size: 0.8rem;
+        font-style: italic;
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .episodes-title {
+        font-weight: bold;
+        margin-bottom: 24px;
+    }
+}
