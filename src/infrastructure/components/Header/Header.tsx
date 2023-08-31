@@ -4,8 +4,8 @@ import "./Header.scss";
 export const Header = (): JSX.Element => {
     return (
         <div className="wrapper-main">
-            <header>
-                <Link to="/" className="header-link">Podcaster</Link>
+            <header className="header">
+                <Link to="/" className="header__link">Podcaster</Link>
                 <hr />
             </header>
             <Outlet />

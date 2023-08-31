@@ -26,9 +26,9 @@ export const Home = (): JSX.Element => {
     })
 
     return (
-        <>
-            <div className="home-header">
-                <span className="badge badge-primary counter-badge">{data?.length}</span>
+        <div className="home">
+            <div className="home__header">
+                <span className="badge badge-primary home__counter-badge">{data?.length}</span>
                 <input placeholder="Filter podcasts..." onChange={e => setSearch(e.target.value)} />
             </div>
             {isLoading
@@ -38,7 +38,7 @@ export const Home = (): JSX.Element => {
                     : (
                         <div className="d-flex flex-wrap">
                             {data?.map(podcast => (
-                                <Link to={`/podcast/${podcast.id.attributes["im:id"]}`} className="podcast-link">
+                                <Link to={`/podcast/${podcast.id.attributes["im:id"]}`} className="home__podcast-link">
                                     <PodcastCard
                                         key={podcast.id.label}
                                         podcastTitle={podcast.title.label}
@@ -49,6 +49,6 @@ export const Home = (): JSX.Element => {
                             ))}
                         </div>
                     )}
-        </>
+        </div>
     );
 }

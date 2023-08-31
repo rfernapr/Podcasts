@@ -7,7 +7,7 @@
     padding: 8px;
     cursor: pointer;
 
-    .image {
+    &__image {
         display: block;
         position: relative;
         margin-top: -45px;
@@ -16,12 +16,14 @@
         margin-left: auto;
         margin-right: auto;
     }
-    .title {
+    
+    &__title {
         text-transform: uppercase;
         font-size: 1rem;
         text-align: center;
     }
-    .author {
+    
+    &__author {
         display: block;
         color: gray;
         font-size: 0.8rem;

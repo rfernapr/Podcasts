@@ -1,17 +1,19 @@
-.counter-badge {
-    margin-right: 4px;
-    background: royalblue;
-}
+.home {
+    &__counter-badge {
+        margin-right: 4px;
+        background: royalblue;
+    }
 
-.home-header {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-}
+    &__header {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
 
-.podcast-link {
-    text-decoration: none;
-    display: block;
-    width: 20%;
-    margin: 16px;
+    &__podcast-link {
+        text-decoration: none;
+        display: block;
+        width: 20%;
+        margin: 16px;
+    }
 }

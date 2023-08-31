@@ -4,8 +4,8 @@ import "./PodcastDetailCard.scss";
 
 export const PodcastDetailCard = (props: IPodcastDetailCardProps): JSX.Element => {
     return (
-        <aside className={props.className}>
-            <Link to={`/podcast/${props.podcastId}`} className="link">
+        <aside className={`podcast-detail-card ${props.className}`}>
+            <Link to={`/podcast/${props.podcastId}`} className="podcast-detail-card__link">
                 <img className="rounded w-100" src={props.podcastArtworkUrl} />
                 <hr />
                 <h4>{props?.podcastName}</h4>
