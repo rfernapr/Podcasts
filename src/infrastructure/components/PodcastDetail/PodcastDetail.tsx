@@ -5,6 +5,7 @@ import "./PodcastDetail.scss";
 import { PodcastDetailCard } from "../../components/PodcastDetailCard/PodcastDetailCard";
 import { IEpisodeEntry } from "../../../domain/models/EpisodeEntry";
 import { podcastService } from "../../../domain/services/PodcastsService";
+import { millisToMinutesAndSeconds } from "../../../domain/utils/timeUtils";
 
 export const PodcastDetail = (): JSX.Element => {
 
@@ -21,16 +22,6 @@ export const PodcastDetail = (): JSX.Element => {
         setEpisodes(data?.filter(res => res.wrapperType === "podcastEpisode") ?? []);
         setPodcast(data?.find(res => res.wrapperType === "track"));
     }, [data])
-
-    const millisToMinutesAndSeconds = (millis: number): string => {
-        const minutes = Math.floor(millis / 60000);
-        const seconds = ((millis % 60000) / 1000).toFixed(0);
-        return (
-            seconds === "60" ?
-                (minutes + 1) + ":00" :
-                minutes + ":" + (Number(seconds) < 10 ? "0" : "") + seconds
-        );
-    }
 
     return (
         <>
