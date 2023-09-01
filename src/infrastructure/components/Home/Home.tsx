@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { PodcastCard } from "../../components/PodcastCard/PodcastCard";
 import "./Home.scss";
 import { Link } from "react-router-dom";
@@ -19,7 +19,7 @@ export const Home = (): JSX.Element => {
             })
     }
 
-    const { isLoading, error, data } = useQuery('podcasts', () => {
+    const { isLoading, error, data } = useQuery(['podcasts'], () => {
         return podcastService.getPodcasts()
     }, {
         select: response => filterResults(response, search)

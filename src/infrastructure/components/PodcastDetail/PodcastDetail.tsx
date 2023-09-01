@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./PodcastDetail.scss";
@@ -13,7 +13,7 @@ export const PodcastDetail = (): JSX.Element => {
     const [episodes, setEpisodes] = useState<IEpisodeEntry[]>([]);
     const [podcast, setPodcast] = useState<IEpisodeEntry>();
 
-    const { isLoading, error, data } = useQuery(`podcast-${podcastId}`, () => {
+    const { isLoading, error, data } = useQuery([`podcast-${podcastId}`], () => {
         return podcastService.getPodcastDetail(podcastId ?? "");
     });
 

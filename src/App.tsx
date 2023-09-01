@@ -1,5 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { QueryClient, QueryClientProvider } from "react-query"
+import { QueryClient } from "@tanstack/react-query"
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client"
+import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.scss"
 import { Header } from "./infrastructure/components/Header/Header"
@@ -38,10 +40,17 @@ function App() {
     },
   });
 
+  const persister = createSyncStoragePersister({
+    storage: window.localStorage,
+  })
+
   return (
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{ persister }}
+    >
       <RouterProvider router={router} />
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   );
 }
 
