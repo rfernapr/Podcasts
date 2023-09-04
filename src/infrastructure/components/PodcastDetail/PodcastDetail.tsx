@@ -2,17 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import "./PodcastDetail.scss";
 import { PodcastDetailCard } from "../../components/PodcastDetailCard/PodcastDetailCard";
-import { PodcastService } from "../../../domain/services/PodcastsService";
 import { millisToMinutesAndSeconds } from "../../../domain/utils/timeUtils";
 import { Loading } from "../Loading/Loading";
 import { Error } from "../Error/Error";
+import { IPodcastDetailProps } from "./PodcastDetail.model";
 
-export const PodcastDetail = (): JSX.Element => {
+export const PodcastDetail = (props: IPodcastDetailProps): JSX.Element => {
 
     const { podcastId } = useParams();
 
     const { isLoading, error, data } = useQuery([`podcast-${podcastId}`], () => {
-        return PodcastService.getInstance().getPodcastDetail(podcastId ?? "");
+        return props.podcastService.getPodcastDetail(podcastId ?? "");
     });
 
     if (isLoading)

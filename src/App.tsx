@@ -8,8 +8,12 @@ import { Header } from "./infrastructure/components/Header/Header"
 import { EpisodeDetail } from "./infrastructure/components/EpisodeDetail/EpisodeDetail"
 import { Home } from "./infrastructure/components/Home/Home"
 import { PodcastDetail } from "./infrastructure/components/PodcastDetail/PodcastDetail"
+import { PodcastService } from "./domain/services/PodcastsService"
+import { httpPodcastRespository } from "./infrastructure/repositories/httpPodcasts.repository"
 
 function App() {
+
+  const podcastService = new PodcastService(httpPodcastRespository);
 
   const router = createBrowserRouter([
     {
@@ -17,15 +21,15 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />
+          element: <Home podcastService={podcastService} />
         },
         {
           path: "/podcast/:podcastId",
-          element: <PodcastDetail />
+          element: <PodcastDetail podcastService={podcastService} />
         },
         {
           path: "/podcast/:podcastId/episode/:episodeId",
-          element: <EpisodeDetail />
+          element: <EpisodeDetail podcastService={podcastService} />
         }
       ]
     }

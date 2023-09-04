@@ -4,11 +4,11 @@ import "./Home.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IPodcastEntry } from "../../../domain/models/PodcastEntry";
-import { PodcastService } from "../../../domain/services/PodcastsService";
 import { Loading } from "../Loading/Loading";
 import { Error } from "../Error/Error";
+import { IHomeProps } from "./Home.model";
 
-export const Home = (): JSX.Element => {
+export const Home = (props: IHomeProps): JSX.Element => {
 
     const [search, setSearch] = useState("");
 
@@ -22,7 +22,7 @@ export const Home = (): JSX.Element => {
     }
 
     const { isLoading, error, data } = useQuery(['podcasts'], () => {
-        return PodcastService.getInstance().getPodcasts()
+        return props.podcastService.getPodcasts()
     }, {
         select: response => filterResults(response, search)
     })

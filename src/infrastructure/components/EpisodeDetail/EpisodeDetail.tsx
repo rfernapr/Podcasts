@@ -1,16 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PodcastDetailCard } from "../../components/PodcastDetailCard/PodcastDetailCard";
-import { PodcastService } from "../../../domain/services/PodcastsService";
 import { Loading } from "../Loading/Loading";
 import { Error } from "../Error/Error";
+import { IEpisodeDetailProps } from "./EpisodeDetail.model";
 
-export const EpisodeDetail = (): JSX.Element => {
+export const EpisodeDetail = (props: IEpisodeDetailProps): JSX.Element => {
 
     const { podcastId, episodeId } = useParams();
 
     const { isLoading, error, data } = useQuery([`podcast-${podcastId}`], () => {
-        return PodcastService.getInstance().getPodcastDetail(podcastId ?? "");
+        return props.podcastService.getPodcastDetail(podcastId ?? "");
     })
 
     if (isLoading)
