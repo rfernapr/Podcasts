@@ -58,7 +58,7 @@ export interface IPodcastEntry {
         };
     };
     "im:releaseDate": {
-        label: Date;
+        label: string | Date;
         attributes: {
             label: string;
         };

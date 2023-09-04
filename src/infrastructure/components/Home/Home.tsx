@@ -4,7 +4,9 @@ import "./Home.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { IPodcastEntry } from "../../../domain/models/PodcastEntry";
-import { podcastService } from "../../../domain/services/PodcastsService";
+import { PodcastService } from "../../../domain/services/PodcastsService";
+import { Loading } from "../Loading/Loading";
+import { Error } from "../Error/Error";
 
 export const Home = (): JSX.Element => {
 
@@ -20,7 +22,7 @@ export const Home = (): JSX.Element => {
     }
 
     const { isLoading, error, data } = useQuery(['podcasts'], () => {
-        return podcastService.getPodcasts()
+        return PodcastService.getInstance().getPodcasts()
     }, {
         select: response => filterResults(response, search)
     })
@@ -32,9 +34,9 @@ export const Home = (): JSX.Element => {
                 <input placeholder="Filter podcasts..." onChange={e => setSearch(e.target.value)} />
             </div>
             {isLoading
-                ? "Cargando..."
+                ? <Loading />
                 : error
-                    ? "Ha ocurrido un error"
+                    ? <Error />
                     : (
                         <div className="d-flex flex-wrap">
                             {data?.map(podcast => (

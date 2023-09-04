@@ -1,7 +1,7 @@
 export interface IPodcastDetailDTO {
     resultCount: number;
     results: {
-        wrapperType?: string;
+        wrapperType?: "podcastEpisode" | "track";
         kind?: string;
         artistId?: number;
         collectionId?: number;

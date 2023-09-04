@@ -11,7 +11,7 @@ describe('Test Header', () => {
         </MemoryRouter>
     )
 
-    test('has title', () => {
+    test('should have title', () => {
         render(component);
         const title = screen.getByText("Podcaster");
         expect(title).toBeInTheDocument();

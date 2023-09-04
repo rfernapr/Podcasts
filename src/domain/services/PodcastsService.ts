@@ -1,15 +1,32 @@
-import { podcastRespository } from "../../infrastructure/repositories/podcasts.repository";
+import { httpPodcastRespository } from "../../infrastructure/repositories/httpPodcasts.repository";
+import { IPodcastRepository } from "../../infrastructure/repositories/podcasts.repository";
 import { IEpisodeEntry } from "../models/EpisodeEntry";
 import { IPodcastEntry } from "../models/PodcastEntry";
 
-export const podcastService = {
+export class PodcastService {
 
-    getPodcasts: async (): Promise<IPodcastEntry[]> => {
-        return podcastRespository.getPodcasts()
-    },
+    private static _instance: PodcastService;
 
-    getPodcastDetail: async (podcastId: string): Promise<IEpisodeEntry[]> => {
-        return podcastRespository.getPodcastDetail(podcastId);
+    private podcastRepository: IPodcastRepository
+
+    public constructor(podcastRepository: IPodcastRepository) {
+        this.podcastRepository = podcastRepository;
+    }
+
+    public static getInstance = (): PodcastService => {
+		if (!PodcastService._instance) {
+			PodcastService._instance = new PodcastService(httpPodcastRespository);
+		}
+
+		return PodcastService._instance;
+	};
+
+    public getPodcasts = async (): Promise<IPodcastEntry[]> => {
+        return this.podcastRepository.getPodcasts()
+    }
+
+    public getPodcastDetail = async (podcastId: string): Promise<IEpisodeEntry[]> => {
+        return this.podcastRepository.getPodcastDetail(podcastId);
     }
 
 }

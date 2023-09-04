@@ -23,25 +23,25 @@ describe('Test Podcast Detail Card', () => {
         </MemoryRouter>
     )
 
-    test('has image', () => {
+    test('should have image', () => {
         render(component);
         const image = screen.getByRole("img");
         expect(image).toBeInTheDocument();
     });
 
-    test('has title', () => {
+    test('should have title', () => {
         render(component);
         const title = screen.getByText(podcastName);
         expect(title).toBeInTheDocument();
     });
 
-    test('has author', () => {
+    test('should have author', () => {
         render(component);
         const author = screen.getByText("by " + podcastArtist);
         expect(author).toBeInTheDocument();
     });
 
-    test('has description', () => {
+    test('should have description', () => {
         render(component);
         const description = screen.getByText(podcastDescription);
         expect(description).toBeInTheDocument();
