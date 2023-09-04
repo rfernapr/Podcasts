@@ -40,7 +40,10 @@ export const Home = (props: IHomeProps): JSX.Element => {
                     : (
                         <div className="d-flex flex-wrap">
                             {data?.map(podcast => (
-                                <Link to={`/podcast/${podcast.id.attributes["im:id"]}`} className="home__podcast-link">
+                                <Link
+                                    key={podcast.id.label}
+                                    to={`/podcast/${podcast.id.attributes["im:id"]}`} className="home__podcast-link"
+                                >
                                     <PodcastCard
                                         key={podcast.id.label}
                                         podcastTitle={podcast.title.label}

@@ -49,7 +49,7 @@ export const PodcastDetail = (props: IPodcastDetailProps): JSX.Element => {
                                 </thead>
                                 <tbody>
                                     {episodes?.map(episode => (
-                                        <tr>
+                                        <tr key={episode.trackId}>
                                             <td scope="row"><Link to={`/podcast/${podcastId}/episode/${episode.trackId}`}>{episode.trackName}</Link></td>
                                             <td>{(new Date(episode.releaseDate ?? "")).toLocaleDateString()}</td>
                                             <td>{millisToMinutesAndSeconds(episode.trackTimeMillis ?? 0)}</td>
